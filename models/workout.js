@@ -18,10 +18,11 @@ const workoutSchema = new Schema({
     },
     duration: {
       type: Number,
-      required: "Enter an exercise duration in minutes"
+      
     },
     weight: {
-      type: Number
+      type: Number,
+      required: "Enter an exercise weight"
     },
     reps: {
       type: Number
@@ -39,9 +40,9 @@ const workoutSchema = new Schema({
   }
 });
 
-workoutSchema.virtual("totalDuration").get(function () {
+workoutSchema.virtual("totalWeight").get(function () {
   return this.exercises.reduce((total, exercise) => {
-    return total + exercise.duration;
+    return total + exercise.weight;
   }, 0);
 });
 
